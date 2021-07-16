@@ -1,7 +1,7 @@
 /**
  * Checks if T1 equals to T2.
  */
-export type IsTypeEqual<T1, T2> = IsNotAny<T1> extends false ? false : (
+type IsTypeEqual<T1, T2> = IsNotAny<T1> extends false ? false : (
     IsNotAny<T2> extends false ? false : (
         [T1] extends [T2] ? ([T2] extends [T1] ? true : false): false
     )

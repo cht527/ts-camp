@@ -1,13 +1,4 @@
 
-export type Without<T> = { [P in keyof T]?: undefined };
-
-// 异或
-export type XOR<T, U> = (Without<T> & U) | (Without<U> & T);
-
-// 假值
-export type Falsy = false | "" | 0 | null | undefined;
-
-
 export interface MapKV<T> {
     [key: string]: T | MapKV<T>;
 }

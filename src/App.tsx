@@ -8,6 +8,16 @@ export const SomeContext = createContext({
   moneyForMe: {value: 1},
 });
 
+
+export enum State {
+  PREVIEW = -1,
+  CREATED = 0,
+  RUNNING = 3,
+  FINISHED = 2,
+  CANCELED = 4,
+  FAILED = 1
+}
+
 function App() {
   const [moneyForMe, setmoneyForMe] = useState({value:1});
   const [moneyForDaddy, setmoneyForDaddy] = useState(1);
@@ -15,7 +25,7 @@ function App() {
   const [a] = useState('111111');
   const [b] = useState('222222');
 
-
+  console.log(Object.values(State).filter(item=> !isNaN(Number(item))))
 
   return (
     <div className="App">

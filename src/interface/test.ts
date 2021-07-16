@@ -1,3 +1,4 @@
+import { IsTypeEqual } from "@/typings/typeassert";
 
 
 // 对于对象类型，我们使用 interface 替代 type 声明，方便可能的扩展和继承
