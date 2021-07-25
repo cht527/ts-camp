@@ -17,11 +17,8 @@ export declare type UnionOmit<T, K> = T & Omit<K, keyof T>;
 
 export type PickByValue<T, ValueType> = Pick<T, {[key in keyof T]-? : T[key] extends ValueType ? key : never }[keyof T]>
 
-export type Last<T extends any[]> = T extends [...any, infer R] ? R : never;
 
-export type First<T extends any[]> = T extends [infer R, ...any] ? R : never;
 
-type Pop<T extends any[]> = T extends [...infer R, infer U] ? R : never;
 
 
 
