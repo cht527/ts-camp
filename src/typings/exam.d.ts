@@ -111,4 +111,24 @@ export type StrLength<S extends string> = TransStringToArray<S>['length']
 
 /* _____________ 测试用例 _____________ */
 
-type Check_StrLength = StrLength<'aaa'>
+type Check_StrLength = IsTypeEqual<StrLength<'aaa'>,3>
+
+
+// 8、 对象添加kv
+
+type AppendToObject<T extends Record<string, unknown>, U extends string, V> = {
+  [K in keyof T | U] : K extends U ? V : T[K]
+}
+
+/* _____________ 测试用例 _____________ */
+
+type Obj = {
+  a: string;
+  b: number;
+}
+
+type Check_AppendToObject= IsTypeEqual<AppendToObject<Obj, 'c', boolean> ,{
+  a: string;
+  b: number;
+  c: boolean
+}>
