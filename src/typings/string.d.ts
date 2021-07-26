@@ -49,13 +49,24 @@ type Check_StringToUnion_case = [
     IsTypeEqual<StringToUnion<''>,never>,
 ]
 
-// 5、驼峰
+// 5 、 命名规范 ，
+
+//  烤肉串->驼峰
 
 type CamelCase<S extends string> = S extends `${infer Head}-${infer Rest}` ? `${Head}${Capitalize<CamelCase<Rest>>}` : Capitalize<S> 
+
+//  驼峰->烤肉串
+
+type Uncapitalize<S> = S extends `${infer F}${infer E}` ? `${Lowercase<F>}${E}` : S
+
+type KebabCase<S extends string> = S extends `${infer Head}${infer Rest}` 
+                                    ? `${Uncapitalize<Head>}${Rest extends Uncapitalize<Rest> ? '' : '-'}${KebabCase<Rest>}` 
+                                    : Uncapitalize<S>
 
 /* _____________ 测试用例 _____________ */
 
 type Check_CamelCase= IsTypeEqual<CamelCase<'foo-bar-baz'>, 'fooBarBaz'>
 
+type Check_KebabCase= IsTypeEqual<KebabCase<'fooBarBaz'>, 'foo-bar-baz'>
 
 
