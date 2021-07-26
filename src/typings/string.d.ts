@@ -49,3 +49,13 @@ type Check_StringToUnion_case = [
     IsTypeEqual<StringToUnion<''>,never>,
 ]
 
+// 5、驼峰
+
+type CamelCase<S extends string> = S extends `${infer Head}-${infer Rest}` ? `${Head}${Capitalize<CamelCase<Rest>>}` : Capitalize<S> 
+
+/* _____________ 测试用例 _____________ */
+
+type Check_CamelCase= IsTypeEqual<CamelCase<'foo-bar-baz'>, 'fooBarBaz'>
+
+
+

@@ -20,7 +20,6 @@ export enum Data{
 }
 
 
-
 export interface ITest{
     rgb: RGB,
     blackWhite: BlackWhite,
@@ -29,3 +28,4 @@ export interface ITest{
         b: Data
     }
 }
+

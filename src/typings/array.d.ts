@@ -4,6 +4,7 @@ import { IsTypeEqual } from "./typeassert";
 
 export type Last<T extends any[]> = T extends [...any, infer R] ? R : never;
 
+
 export type First<T extends any[]> = T extends [infer R, ...any] ? R : never;
 
 export type Pop<T extends any[]> = T extends [...infer R, infer U] ? R : never;
