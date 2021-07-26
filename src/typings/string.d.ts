@@ -37,3 +37,15 @@ export type StrLength<S extends string> = TransStringToArray<S>['length']
 /* _____________ 测试用例 _____________ */
 
 type Check_StrLength = IsTypeEqual<StrLength<'aaa'>,3>
+
+
+// 4、字符串转联合类型
+
+type StringToUnion<T extends string> =  T extends '' ? never : T extends `${infer First}${infer Rest}` ? First | StringToUnion<Rest> : never
+/* _____________ 测试用例 _____________ */
+
+type Check_StringToUnion_case = [
+    IsTypeEqual<StringToUnion<'aaa'>,'a'|'a'|'a'>,
+    IsTypeEqual<StringToUnion<''>,never>,
+]
+

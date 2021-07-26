@@ -1,8 +1,6 @@
 
 import { IsTypeEqual } from "./typeassert";
 
-
-
 //  对象添加kv
 
 type AppendToObject<T extends Record<string, unknown>, U extends string, V> = {
@@ -23,22 +21,34 @@ type Check_AppendToObject= IsTypeEqual<AppendToObject<Obj, 'c', boolean> ,{
 }>
 
 
-// 合并对象类型
-
+// 对象类型
 export type ObjectType<T> = {
     [k in keyof T] : T[k]
 }
 
-/* _____________ 测试用例 _____________ */
+// 合并对象类型 (不能重复key)
 
-type a = {
-    a: string
+export type CombineObjects<T extends object, U extends object> = ObjectType<T & U>;
+
+// Merge （重复key 合并）
+
+type Merge<F extends Record<string,unknown>, S extends Record<string,unknown>> = {
+  [K in keyof S | keyof F]: K extends keyof F ? F[K] : K extends keyof S ? S[K] : never
 }
 
-type b = {
+/* _____________ 测试用例 _____________ */
+
+type ao = {
+    a: string,
+}
+
+type bo = {
+    a: number,
     b: number
 }
 
-type C = ObjectType<a & b>
+type C = ObjectType<ao & bo>
 
-export type CombineObjects<T extends object, U extends object> = ObjectType<T & U>;
+type t = Merge<ao,bo>
+
+type Check_merge = IsTypeEqual<Merge<ao,bo>, C>
