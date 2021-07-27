@@ -69,3 +69,14 @@ type PercentageParser<A extends string, S extends string = Sign<A>, P extends st
 /* _____________ 测试用例 _____________ */
 
 type Check_PercentageParser = IsTypeEqual<PercentageParser<'-100%'>,['-','100','%']>
+
+// 5、删除字符
+
+type DropChar<S extends string, C extends string>
+  = S extends `${infer First}${C}${infer Rest}`
+      ? `${First}${DropChar<Rest, C>}`
+      : S
+
+/* _____________ 测试用例 _____________ */
+
+type Check_DropChar = IsTypeEqual<DropChar<'butter fly!', 'u'>, 'btter fly!'>

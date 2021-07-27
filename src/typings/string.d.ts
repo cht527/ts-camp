@@ -69,4 +69,3 @@ type Check_CamelCase= IsTypeEqual<CamelCase<'foo-bar-baz'>, 'fooBarBaz'>
 
 type Check_KebabCase= IsTypeEqual<KebabCase<'fooBarBaz'>, 'foo-bar-baz'>
 
-
