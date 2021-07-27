@@ -52,3 +52,22 @@ type C = ObjectType<ao & bo>
 type t = Merge<ao,bo>
 
 type Check_merge = IsTypeEqual<Merge<ao,bo>, C>
+
+// 对象类型 排除 index 类型
+
+type ExcludeIndex<P> = string extends P ? never : (P extends number ? never : (P extends symbol ? never : P) ) 
+type RemoveIndexSignature<T> = {
+  [P in keyof T as ExcludeIndex<P>] : T[P]
+}
+
+/* _____________ 测试用例 _____________ */
+
+type Foo = {
+  [key: string]: any;
+  foo(): void;
+}
+
+type Check_RemoveIndexSignature = IsTypeEqual<RemoveIndexSignature<Foo>, {
+  foo(): void
+}>
+

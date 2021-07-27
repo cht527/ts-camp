@@ -24,3 +24,13 @@ export type Without<T> = { [P in keyof T]?: undefined };
 // 异或
 export type Xor<A extends Bool, B extends Bool> = Or<And<A, Not<B>>, And<Not<A>, B>>;
 
+// 判断never类型
+export type IsNever<T> = [T] extends [never] ? true : false
+
+// 判断联合类型
+// 联合类型会执行迭代，
+// eg: T = 'A' | 'B' | 'C', =》 分别赋值给A,B,C; 
+// 通过 B=T，保存原始值， 判断从B中排除 T 是否还有值
+export type IsUnion<T, B = T> = T extends T ? (Exclude<B, T> extends [never] ? false : true) : never
+
+
