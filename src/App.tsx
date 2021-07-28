@@ -1,7 +1,10 @@
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
+import VideoCloud from '../src/components/videoCloud';
+import {data} from  './components/videoCloud/data';
 import './App.css';
 
-import PickContextData from '../src/components/testMemo';
+// import PickContextData from '../src/components/testMemo';
+import { GradeListItem } from './components/videoCloud/video_cloud';
 
 export const SomeContext = createContext({
   moneyForDaddy: 0,
@@ -19,24 +22,18 @@ export enum State {
 }
 
 function App() {
-  const [moneyForMe, setmoneyForMe] = useState({value:1});
-  const [moneyForDaddy, setmoneyForDaddy] = useState(1);
+  // const [moneyForMe, setmoneyForMe] = useState({value:1});
+  // const [moneyForDaddy, setmoneyForDaddy] = useState(1);
 
-  const [a] = useState('111111');
-  const [b] = useState('222222');
+  // const [a] = useState('111111');
+  // const [b] = useState('222222');
 
-  console.log(Object.values(State).filter(item=> !isNaN(Number(item))))
+  const data_ :GradeListItem[] = data;
 
   return (
     <div className="App">
       
-
-      <button onClick={()=>setmoneyForMe({value: moneyForMe.value+1})}>plus a</button>
-      <button onClick={()=>setmoneyForDaddy(moneyForDaddy+1)}>plus b</button>
-
-      <SomeContext.Provider value={{moneyForDaddy, moneyForMe}}>
-        <PickContextData a={a} b={b} />
-      </SomeContext.Provider>
+      <VideoCloud gradeList={data_} materialType={3} indexType={1}  />
       
     </div>
   );
