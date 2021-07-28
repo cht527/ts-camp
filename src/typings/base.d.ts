@@ -1,3 +1,4 @@
+import { IsTypeEqual } from "./typeassert";
 
 export interface MapKV<T> {
     [key: string]: T | MapKV<T>;
@@ -18,7 +19,17 @@ export declare type UnionOmit<T, K> = T & Omit<K, keyof T>;
 export type PickByValue<T, ValueType> = Pick<T, {[key in keyof T]-? : T[key] extends ValueType ? key : never }[keyof T]>
 
 
+// 提取必选项
+export type GetRequired<T> = {
+    [P in keyof T as (T[P] extends Required<T>[P] ? P : never)] : T[P]
+}
 
+/* _____________ 测试用例 _____________ */
+type test_GetRequired = {
+    a: string,
+    b?: string
+}
+type Check_GetRequired = IsTypeEqual<GetRequired<test_GetRequired>,{a: string}>
 
 
 
