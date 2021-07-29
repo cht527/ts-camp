@@ -40,3 +40,25 @@ type FnInput= (a:number,b:string)=> number
 type FnOutput = (a:number, b:string, c:boolean) => number
 type Check_AppendArgument = IsTypeEqual<AppendArgument<FnInput, boolean>, FnOutput>
 
+// Getter 
+
+type Get<T,K>  = T extends `${infer F}.${infer L}` ? (F extends keyof T ? Get<T[F],L> : never) : (K extends keyof T ? T[K]: never)
+
+/* _____________ 测试用例 _____________ */
+
+type Data = {
+  foo: {
+    bar: {
+      value: 'foobar',
+      count: 6,
+    },
+    included: true,
+  },
+  hello: 'world'
+}
+
+type Check_Get1 = IsTypeEqual<Get<Data, 'hello'>, 'world'>
+
+type Check_Get2 = IsTypeEqual<Get<Data, 'foo.bar.count'>, 6>
+
+type Check_Get3 = IsTypeEqual<Get<Data, 'no.existed'>, never>

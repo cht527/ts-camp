@@ -33,4 +33,16 @@ type Check_GetRequired = IsTypeEqual<GetRequired<test_GetRequired>,{a: string}>
 
 
 
+// 提取可选项
+export type GetOptional<T> = {
+    [P in keyof T as (T[P] extends Required<T>[P] ? never : P)] : T[P]
+}
+
+/* _____________ 测试用例 _____________ */
+type test_GetOptional = {
+    a: string,
+    b?: string
+}
+type Check_GetOptional = IsTypeEqual<GetOptional<test_GetOptional>,{b?: string}>
+
 
