@@ -62,3 +62,4 @@ type Check_Get1 = IsTypeEqual<Get<Data, 'hello'>, 'world'>
 type Check_Get2 = IsTypeEqual<Get<Data, 'foo.bar.count'>, 6>
 
 type Check_Get3 = IsTypeEqual<Get<Data, 'no.existed'>, never>
+

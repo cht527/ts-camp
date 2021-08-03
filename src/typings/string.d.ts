@@ -1,3 +1,4 @@
+import { type } from "node:os";
 import { IsTypeEqual } from "./typeassert";
 
 
@@ -68,4 +69,24 @@ type KebabCase<S extends string> = S extends `${infer Head}${infer Rest}`
 type Check_CamelCase= IsTypeEqual<CamelCase<'foo-bar-baz'>, 'fooBarBaz'>
 
 type Check_KebabCase= IsTypeEqual<KebabCase<'fooBarBaz'>, 'foo-bar-baz'>
+
+
+// 6、 字符串 转 数字
+
+type StringToNumber<S extends string, T extends any[] = []> =  S extends `${T['length']}` ? T['length'] : StringToNumber<S,[...T, any]>
+
+/* _____________ 测试用例 _____________ */
+
+type Check_StringToNumber= IsTypeEqual<StringToNumber<'112'>, 112>
+
+type a = '112' extends `0` ? true : false
+
+type b = '112' extends '1' ? true : false
+
+type c = '112' extends '2' ? true : false
+
+type d = '112' extends '3' ? true : false
+
+
+
 
