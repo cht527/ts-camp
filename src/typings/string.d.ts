@@ -31,13 +31,25 @@ type Check_ReplaceAll = IsTypeEqual<Replace<'foo bar foo', 'foo', 't'>, 't bar'>
 
 // 3、字符串长度
 
+//    3.1 仅仅支持短字符串
+
+//   The usual recursive calculation of the string length is limited by the depth of recursive function calls in TS, that is, it supports strings up to about 45 characters long.
 export type TransStringToArray<S extends string> = S extends `${infer Frist}${infer Rest}` ? [Frist,...TransStringToArray<Rest>] : []
 
-export type StrLength<S extends string> = TransStringToArray<S>['length']
+export type StrLength1<S extends string> = TransStringToArray<S>['length']
+
+//    3.2 支持长字符串 The type must support strings several hundred characters long 
+//  P[P['length]] extends Frist 始终是false，最后一步，空字符 '' 执行 S extends `${infer Frist}${infer Rest}` 为false， 返回 P['length]
+export type StrLength2<S extends string, P extends any[] = []> = S extends `${infer Frist}${infer Rest}` ? (
+    P[P['length']] extends Frist ? P['length'] : StrLength2<Rest,[...P,any]>
+) : P['length']
 
 /* _____________ 测试用例 _____________ */
 
-type Check_StrLength = IsTypeEqual<StrLength<'aaa'>,3>
+type Check_StrLength1 = IsTypeEqual<StrLength1<'aaa'>,3>
+
+type Check_StrLength2 = IsTypeEqual<StrLength2<'aaa'>,3>
+
 
 
 // 4、字符串转联合类型
@@ -78,15 +90,6 @@ type StringToNumber<S extends string, T extends any[] = []> =  S extends `${T['l
 /* _____________ 测试用例 _____________ */
 
 type Check_StringToNumber= IsTypeEqual<StringToNumber<'112'>, 112>
-
-type a = '112' extends `0` ? true : false
-
-type b = '112' extends '1' ? true : false
-
-type c = '112' extends '2' ? true : false
-
-type d = '112' extends '3' ? true : false
-
 
 
 
