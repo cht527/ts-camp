@@ -18,3 +18,27 @@ type UnionToIntersection<U> = (U extends infer R ? (x:R)=>any : never) extends (
 
 type Check_UnionToIntersection1 = IsTypeEqual<UnionToIntersection<'foo'|42|true>,'foo'&42&true>
 type Check_UnionToIntersection2 = IsTypeEqual<UnionToIntersection<(() => 'foo') | ((i: 42) => true)>, (() => 'foo') & ((i: 42) => true)>
+
+
+// Tuple 转 object
+
+type Index<T extends readonly string[], K extends T[number], A extends any[]=[]> = T[A['length']] extends K ? A['length'] : Index<T,K,[...A, any]>
+type EnumToObj<T extends readonly string[], N extends boolean = false> = {
+    readonly [K in T[number] as Capitalize<K>]: N extends false ? K : Index<T,K> 
+}
+
+/* _____________ 测试用例 _____________ */
+const OperatingSystem = ['macOS', 'Windows', 'Linux'] as const
+
+type Check_Enum1 = IsTypeEqual<EnumToObj<typeof OperatingSystem>, {
+    readonly MacOS: 'macOS'
+    readonly Windows: 'Windows'
+    readonly Linux: 'Linux'
+}>
+
+type Check_Enum2 = IsTypeEqual<EnumToObj<typeof OperatingSystem, true>,
+  {
+    readonly MacOS: 0
+    readonly Windows: 1
+    readonly Linux: 2
+  }>

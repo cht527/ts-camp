@@ -16,3 +16,4 @@ export type FilterOut<T extends any[], F> = T extends [infer First, ...infer Res
 /* _____________ 测试用例 _____________ */
 type Check_FilterOut = IsTypeEqual<FilterOut<['u',0,null,false], 'u'>, [0,null,false]>
 
+
