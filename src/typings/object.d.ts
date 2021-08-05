@@ -1,6 +1,35 @@
 
 import { IsTypeEqual } from "./typeassert";
 
+// 获取所有的key
+export type AllKeys<T, U> = keyof T | keyof U;
+/* _____________ 测试用例 _____________ */
+type testAllKeys1 = { x: number, y: string };
+type testAllKeys2 = { x: string, y: string, z: boolean };
+
+type Check_AllKeys = AllKeys<testAllKeys1, testAllKeys2>;
+
+// 获取共同的key
+
+export type SharedKeys<T, U> = keyof T & keyof U;
+/* _____________ 测试用例 _____________ */
+type testSharedKeys1= { x: number, y: string };
+type testSharedKeys2 = { x: string, y: string, z: boolean };
+
+type Check_SharedKeys = SharedKeys<testSharedKeys1, testSharedKeys2>;
+
+//   交集
+
+type DiffKeys<T, U> = Exclude<keyof T, keyof U>;
+
+type Intersect<T extends object, U extends Partial<T>> = Omit<U, DiffKeys<U, T>>;
+/* _____________ 测试用例 _____________ */
+
+type testIntersect1 = { x: number, y: string };
+type testIntersect2 = { y: string, z: string };
+
+type Check_Intersect= IsTypeEqual<Intersect<testIntersect1,testIntersect2>,{y: string}>
+
 //  对象添加kv
 
 type AppendToObject<T extends Record<string, unknown>, U extends string, V> = {
