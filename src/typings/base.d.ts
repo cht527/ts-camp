@@ -18,6 +18,22 @@ export declare type UnionOmit<T, K> = T & Omit<K, keyof T>;
 
 export type PickByValue<T, ValueType> = Pick<T, {[key in keyof T]-? : T[key] extends ValueType ? key : never }[keyof T]>
 
+// 把给定的key 转化成 requierd 类型
+
+export type AugmentedRequired<T extends object, K extends keyof T = keyof T> = Omit<T, K> & Required<Pick<T,K>>
+/* _____________ 测试用例 _____________ */
+ type test_augmentedRequired1 = {
+    name?: string;
+    age?: number;
+    visible?: boolean;
+ };
+
+ type Check_AugmentedRequired1 = IsTypeEqual<AugmentedRequired<test_augmentedRequired1>,Required<test_augmentedRequired1>>
+
+ type test_augmentedRequired2 = { name: string; age?: number; visible?: boolean; }
+
+ type Check_AugmentedRequired2 = IsTypeEqual<AugmentedRequired<test_augmentedRequired2, 'age' | 'visible'>,{ name: string; age: number; visible: boolean; }>;
+
 
 // 提取必选项
 export type GetRequired<T> = {

@@ -1,6 +1,21 @@
 
 import { IsTypeEqual } from "./typeassert";
 
+// 判断 key 是否在obj中
+export function isKeyOf<T extends object>(obj: T, k: keyof any): k is keyof T {
+  return k in obj;
+}
+/* _____________ 测试用例 _____________ */
+
+const isKeyofObj= {
+  a: 1,
+  b: '0'
+}
+
+const a: number = 1;
+
+const test_isKeyOf = isKeyOf(isKeyofObj,a)
+
 // 链式操作 Chainable
 
 type Chainable<T = {}> = {
