@@ -63,3 +63,17 @@ type Check_Enum2 = IsTypeEqual<EnumToObj<typeof OperatingSystem, true>,
 type UnionToUnionTuple<T> = [T] extends [never] ? never : T extends undefined ? never : [T]
 /* _____________ 测试用例 _____________ */
 type Check_UnionToUnionTuple = IsTypeEqual<UnionToUnionTuple<1|2|null>,[1]|[2]|[null]>
+
+// 对象 union 化
+export type Unionize<T extends object> = {
+  [P in keyof T]: { [Q in P]: T[P] };
+}[keyof T]
+/* _____________ 测试用例 _____________ */
+
+type test_Unionize = {
+  a: string,
+  b: number,
+  c: boolean
+}
+
+type Check_Unionize = IsTypeEqual<Unionize<test_Unionize>,{a: string} | {b: number} | {c: boolean}>
