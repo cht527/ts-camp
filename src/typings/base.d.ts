@@ -17,6 +17,14 @@ export declare type UnionOmit<T, K> = T & Omit<K, keyof T>;
 // 基于值类型的Pick
 
 export type PickByValue<T, ValueType> = Pick<T, {[key in keyof T]-? : T[key] extends ValueType ? key : never }[keyof T]>
+/* _____________ 测试用例 _____________ */
+
+type test_PickByValue = { req: number; reqUndef: number | undefined; opt?: string; };
+
+type check_PickByValue1 = IsTypeEqual<PickByValue<test_PickByValue, number>, {req: number}>
+
+type check_PickByValue2 = IsTypeEqual<PickByValue<test_PickByValue, number|undefined>, {req: number, reqUndef: number | undefined;}>
+
 
 // 把给定的key 转化成 requierd 类型
 
