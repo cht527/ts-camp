@@ -33,7 +33,8 @@ function App() {
   return (
     <div className="App">
       
-      <VideoCloud gradeList={data_} materialType={3} indexType={1}  />
+      {/* <VideoCloud gradeList={data_} materialType={3} indexType={1}  /> */}
+      <div id="container"></div>
       
     </div>
   );
