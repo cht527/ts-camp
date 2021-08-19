@@ -28,7 +28,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "commit": "git-cz"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +55,16 @@
     "@types/qs": "^6.9.7",
     "@types/react-router-dom": "^5.1.8",
     "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewired": "^2.1.8",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "commitlint-config-cz": "^0.13.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0"
+  },
+  "config": {
+    "commitizen": {
+        "path": "node_modules/cz-customizable"
+    }
   }
 }
