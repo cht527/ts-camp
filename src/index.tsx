@@ -1,12 +1,55 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, useLocation, BrowserRouter as Router, Link, Switch } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import Home from './App';
 
+function About() {
+  console.log(useLocation());
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
+
+function Dashboard() {
+  console.log(useLocation());
+
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router >
+    <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to={location => `/about?sort=name`}>About</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </ul>
+
+        <hr />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+</Router>,
   document.getElementById('root')
 );
 

@@ -19,7 +19,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "rolandbergergraph": "^1.0.0",
+    "rolandbergergraph": "^1.2.10",
     "rxjs": "^6.6.6",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
@@ -44,27 +44,27 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@types/d3": "^7.0.0",
     "@types/echarts": "^4.9.7",
     "@types/qs": "^6.9.7",
     "@types/react-router-dom": "^5.1.8",
-    "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.1.8",
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
     "commitlint-config-cz": "^0.13.2",
+    "customize-cra": "^1.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "cz-customizable": "^6.3.0"
+    "cz-customizable": "^6.3.0",
+    "react-app-rewired": "^2.1.8"
   },
   "config": {
     "commitizen": {
-        "path": "node_modules/cz-customizable"
+      "path": "node_modules/cz-customizable"
     }
   }
 }
