@@ -7,3 +7,9 @@ export default function useDom(selector:string){
     nodeRef.current = document.querySelector(selector);
     return nodeRef.current
 }
+
+enum Fruit{
+    Apple,
+    Banana,
+    Peach
+}
