@@ -1,28 +1,31 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from 'react';
+import Modal from '@/components/modal';
+import './App.css';
 
-type Inputs = {
-  example: string,
-  exampleRequired: string,
-};
 
-export default function App() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+function App() {
 
-  console.log(watch("example")) // watch input value by passing the name of it
+  const [show, setShow] = useState(false)
 
+
+  const handleClick = ()=>{
+    setShow(true)
+  }
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-      <input defaultValue="test" {...register("example")} />
-      
-      {/* include validation with required or other standard HTML validation rules */}
-      <input {...register("exampleRequired", { required: true })} />
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
-      
-      <input type="submit" />
-    </form>
-  );
+        <>
+            
+            <Modal onClose= {()=>setShow(false)} visible={show}  >
+              <div>
+                content
+              </div>
+            </Modal>
+
+            <button onClick={handleClick} style={{zIndex: 999}}> clicked </button>
+
+            
+        </>
+  )
+
 }
+
+export default App;
