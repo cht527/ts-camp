@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 
 const useSubmit = (submitFunction: (...args: any[]) => unknown) => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<unknown>(null);
     const handleSubmit = useCallback(async () => {
       try {
         setLoading(true);
