@@ -1,26 +1,10 @@
 import ReactDOM from 'react-dom';
-import { Route, useLocation, BrowserRouter as Router, Link, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Link, Switch } from 'react-router-dom';
 import './index.css';
 import Home from './App';
+import About from './pages/About';
+import Dashboard from './pages/Dashboard';
 
-function About() {
-  console.log(useLocation());
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  console.log(useLocation());
-
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
 ReactDOM.render(
   <Router >
     <div>
