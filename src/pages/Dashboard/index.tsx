@@ -1,18 +1,10 @@
-import memoFunc from "@/utils/memoFunc";
+import {testMemoFunc} from "@/utils/memoFunc";
+import {testMemoAsyncFunc} from "@/utils/memoFunc/memoAsyncFunc";
 
-function add(a:number, b:number) {
-  return a + b;
-}
 
 function Dashboard() {
-
-  const memoizedAdd = memoFunc(add);
-  
-  memoizedAdd(1, 2);
-  // add function: is called
-  // [new value returned: 3]
-  
-  memoizedAdd(1, 2);
+    testMemoAsyncFunc();
+    testMemoFunc();
     return (
       <div>
         <h2>Dashboard</h2>

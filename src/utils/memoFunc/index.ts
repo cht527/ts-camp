@@ -18,11 +18,10 @@ export default function memoFunc<TFunc extends (this:any, ...newArgs:any)=> any>
 
     function memoized(this:ThisParameterType<TFunc>, ...newArgs:Parameters<TFunc>){
         if(cache && cache.lastThis === this && isEqual(cache.lastArgs, newArgs)){
-            console.log('second');
+            console.log('second from memo', cache.lastResult);
             
             return cache.lastResult;
         }
-        console.log('first');
         
         const lastResult = fn.apply(this, newArgs);
 
@@ -31,6 +30,7 @@ export default function memoFunc<TFunc extends (this:any, ...newArgs:any)=> any>
             lastThis: this,
             lastResult,
         }
+        console.log('first', lastResult);
 
         return lastResult
     }
@@ -40,4 +40,15 @@ export default function memoFunc<TFunc extends (this:any, ...newArgs:any)=> any>
     }
 
     return memoized
+}
+
+export const testMemoFunc = () => {
+    function add(a:number, b:number) {
+        return a + b;
+      }
+      
+  const memoizedAdd = memoFunc(add);
+  memoizedAdd(1, 2);
+  memoizedAdd(1, 2)
+
 }
