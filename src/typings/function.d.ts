@@ -1,4 +1,5 @@
 
+import { bo } from "./object";
 import { IsTypeEqual } from "./typeassert";
 
 // 判断 key 是否在obj中
@@ -77,4 +78,9 @@ type Check_Get1 = IsTypeEqual<Get<Data, 'hello'>, 'world'>
 type Check_Get2 = IsTypeEqual<Get<Data, 'foo.bar.count'>, 6>
 
 type Check_Get3 = IsTypeEqual<Get<Data, 'no.existed'>, never>
+
+
+// --- EqualFn
+
+export type EqualFn<TFunc extends (...args: any[])=> any> = (newArgs: Parameters<TFunc>, oldArgs: Parameters<TFunc>) => boolean;
 
