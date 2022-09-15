@@ -13,13 +13,20 @@ const fn = (nums: number[]) => {
 export const batcher = (f: (...args: any[]) => any): (arr: any[])=>Promise<any> => {
     // ----- 实现 ----------
     let nums: number[] = [];
-    const p = Promise.resolve().then(_=>f(nums));
+    let p: Promise<any> | null;
 
     return arr => {
+        if(!p)  {
+            p = Promise.resolve().then(_=>f(nums));
+        }
         let L1 = nums.length;
         nums = nums.concat(arr);
         let L2 = nums.length;
-        return p.then(res=>res.slice(L1,L2))
+        return p.then(res=>{
+            nums = [];
+            p = null;
+            res.slice(L1,L2)
+        })
     }
 
 }
