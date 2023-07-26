@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Modal from '@/components/modal';
 import './App.css';
 
-import rolandberger from 'rolandbergergraph';
+import rolandberger from 'rolandbergerprofiler';
 
 const data = [
     {"id":0,"name":"安逸","x":0.22,"y":0.25,"value":0.75},
