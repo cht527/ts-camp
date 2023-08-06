@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import UAParser from 'ua-parser-js';
 import Modal from '@/components/modal';
 import './App.css';
 
@@ -43,6 +44,13 @@ function App() {
          data
       })
     }
+
+    const parser = new UAParser();
+
+    const browserName = parser.getBrowser();
+
+    console.log(browserName);
+    
  
 
   },[]);
