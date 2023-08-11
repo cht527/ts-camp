@@ -2,7 +2,7 @@ import * as T from './interface/test';
 
 
 
-const initValue:T.ITest={
+const MOCK_DATA:T.ITest={
     rgb:{
         r:1,
         g:1,
@@ -18,4 +18,4 @@ const initValue:T.ITest={
     }
 }
 
-export default initValue
+export default MOCK_DATA
