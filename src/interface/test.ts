@@ -29,3 +29,9 @@ export interface ITest{
     }
 }
 
+
+export interface INavConfig {
+  id: number,
+  title: string,
+  slug: string,
+}

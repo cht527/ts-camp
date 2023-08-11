@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
 import { useEffect } from "react";
 
 import rolandberger from "rolandbergerprofiler";
 
 import styles from "./page.module.css";
+
 
 const data = [
   { id: 0, name: "安逸", x: 0.22, y: 0.25, value: 0.75 },
@@ -43,7 +44,9 @@ export default function Home() {
   }, []);
   return (
     <main className={styles.main}>
-      <div id="container"></div>
+      <div>
+        <div id="container"></div>
+      </div>
     </main>
   );
 }

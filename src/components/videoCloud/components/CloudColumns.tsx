@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { CloudItem } from './CloudItem';
-import {MaterialDetail, Rect, MaterialIndexType}  from '../video_cloud.d';
+import {MaterialDetail, Rect, MaterialIndexType}  from '../video_cloud';
 interface IProps {
     data: MaterialDetail[];
     itemWidth: number;

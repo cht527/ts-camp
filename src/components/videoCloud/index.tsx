@@ -4,7 +4,7 @@ import './index.css';
 import { CloudColumns } from './components/CloudColumns';
 import { ScanModel } from './components/ScanModal';
 import { getListConfig } from './utils';
-import { GradeListItem, Rect, MaterialIndexType, MaterialType, MaterialDetail} from './video_cloud.d';
+import { GradeListItem, Rect, MaterialIndexType, MaterialType, MaterialDetail} from './video_cloud';
 interface IProps {
     gradeList: GradeListItem[];
     indexType: MaterialIndexType;
