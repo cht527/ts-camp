@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react';
 import { wrap } from 'comlink';
 import { runBigtask } from '@/utils/bigTask'

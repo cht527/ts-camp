@@ -1,3 +1,5 @@
+'use client'
+
 import {testMemoFunc} from "@/utils/memoFunc";
 import {testMemoAsyncFunc} from "@/utils/memoFunc/memoAsyncFunc";
 
