@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import * as React from 'react';
 import { fromEvent,merge } from 'rxjs';
-import { scan, throttleTime,map,filter, tap, mergeMap } from 'rxjs/operators';
+import { map,filter, tap } from 'rxjs/operators';
 export default function RxTest(){
 
 
-  const addRef = useRef<HTMLElement|null>(null);
+  const addRef = React.useRef<HTMLElement|null>(null);
 
-  const inputRef = useRef<HTMLElement|null>(null);
+  const inputRef = React.useRef<HTMLElement|null>(null);
 
-  const [list,setList] = useState<string[]>([]);
+  const [list,setList] = React.useState<string[]>([]);
 
   const updateList = (val:string) => {
     setList(prev=>prev.concat([val]))
   }
 
-  useEffect(()=>{  
+  React.useEffect(()=>{  
     addRef.current = document.getElementById('btn') as HTMLButtonElement;
     inputRef.current = document.querySelector('.input-val') as HTMLInputElement;
 

@@ -1,15 +1,15 @@
-import React ,{useEffect, useRef} from 'react';
 
-export default function useDom(selector:string){
-    console.log('--dom --')
+import { useRef } from 'react';
 
-    const nodeRef = useRef<HTMLElement|null>(null);
-    nodeRef.current = document.querySelector(selector);
-    return nodeRef.current
+export default function useDom(selector: string) {
+
+  const nodeRef = useRef<HTMLElement | null>(null);
+  nodeRef.current = document.querySelector(selector);
+  return nodeRef.current;
 }
 
-enum Fruit{
-    Apple,
-    Banana,
-    Peach
+enum Fruit {
+  Apple,
+  Banana,
+  Peach,
 }
