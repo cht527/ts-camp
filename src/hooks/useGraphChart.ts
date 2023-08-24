@@ -9,13 +9,29 @@ function getOption(data: ChartOption): echarts.EChartOption {
 export default function useGraphCharts(
   ref: MutableRefObject<echarts.ECharts | null>,
   data: ChartOption,
-  chartRef: HTMLDivElement,
+  chartContainer: HTMLDivElement,
   showLoading?: boolean
 ) {
 
   const timeRef = useRef(0);
+
   useEffect(() => {
-    ref.current = echarts.init(chartRef);
+    ref.current = echarts.init(chartContainer);
+    if (showLoading) {
+      ref.current.showLoading("default", {
+        text: "暂无数据",
+        color: "transparent",
+        textColor: "#1c68d9",
+        maskColor: "rgba(255, 255, 255, 1)",
+        zlevel: 0,
+      });
+    } else {
+      ref.current.hideLoading();
+    }
+    ref.current.setOption(getOption(data), true);
+  }, [chartContainer, data, ref, showLoading]);
+
+  useEffect(() => {
     const resizeFunc = () => {
       if (timeRef.current) {
         window.clearTimeout(timeRef.current);
@@ -32,23 +48,9 @@ export default function useGraphCharts(
       }
       window.removeEventListener("resize", resizeFunc);
     };
-  }, [chartRef, ref]);
+  }, [chartContainer, ref]);
 
-  useEffect(() => {
-    ref.current = echarts.init(chartRef);
-    if (showLoading) {
-      ref.current.showLoading("default", {
-        text: "暂无数据",
-        color: "transparent",
-        textColor: "#1c68d9",
-        maskColor: "rgba(255, 255, 255, 1)",
-        zlevel: 0,
-      });
-    } else {
-      ref.current.hideLoading();
-    }
-    ref.current.setOption(getOption(data), true);
-  }, [chartRef, data, ref, showLoading]);
+ 
 
   return ref.current;
 }
