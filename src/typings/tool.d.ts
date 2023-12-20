@@ -77,3 +77,7 @@ type test_Unionize = {
 }
 
 type Check_Unionize = IsTypeEqual<Unionize<test_Unionize>,{a: string} | {b: number} | {c: boolean}>
+
+
+type Optional<T> = T | undefined;
+
