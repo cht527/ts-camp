@@ -68,3 +68,19 @@ export function replaceEqualDeep(a: any, b: any): any {
 export function deepEqual(a: any, b: any): boolean {
     return replaceEqualDeep(a, b) === a;
 }
+
+/**
+ * 支持格式化输出 Error 等复杂对象，避免直接序列化获得 '{}'
+ * @param error
+ */
+export const stringifyError = (error?: Error | ProgressEvent | DOMException | null) => {
+    if (!error) {
+      return 'undefined';
+    }
+  
+    try {
+      return JSON.stringify(error, Object.getOwnPropertyNames(error));
+    } catch {
+      return 'parse error fail';
+    }
+  };
