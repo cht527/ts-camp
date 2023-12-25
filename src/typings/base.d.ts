@@ -70,3 +70,4 @@ type test_GetOptional = {
 type Check_GetOptional = IsTypeEqual<GetOptional<test_GetOptional>,{b?: string}>
 
 
+type Optional<T> = T | undefined;
