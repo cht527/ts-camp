@@ -19,6 +19,7 @@
     "echarts": "^5.1.1",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
+    "eventemitter3": "^5.0.1",
     "next": "13.4.13",
     "qs": "^6.10.1",
     "react": "18.2.0",
@@ -27,7 +28,8 @@
     "rxjs": "^6.6.6",
     "spark-md5": "^3.0.2",
     "typescript": "5.1.6",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
@@ -39,6 +41,7 @@
     "commitlint-config-cz": "^0.13.2",
     "customize-cra": "^1.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "cz-customizable": "^6.3.0"
+    "cz-customizable": "^6.3.0",
+    "tiny-typed-emitter": "^2.1.0"
   }
 }
