@@ -1,5 +1,9 @@
 import { IsTypeEqual } from "./typeassert";
 
+export type Falsy = "" | 0 | false | null | undefined;
+
+export type Truthy<T> = Exclude<T, Falsy>;
+
 export interface MapKV<T> {
   [key: string]: T | MapKV<T>;
 }
