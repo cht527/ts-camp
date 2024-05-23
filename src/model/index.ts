@@ -4,7 +4,6 @@ import EventEmitter from 'eventemitter3';
 import type { ListenerSignature, DefaultListener } from 'tiny-typed-emitter';
 import { Optional, PlainObject } from '@/typings/base';
 
-export type Subscribe<T> = (listener: (state: T) => void) => void
 
 export type ComputeHandler<T> = () => T;
 
@@ -36,7 +35,7 @@ abstract class Model<
   // 获取所有数据
   get: StoreApi<T>['getState'];
   // 订阅数据改变
-  subscribe: Subscribe<T>;
+  subscribe: StoreApi<T>['subscribe'];
   destroy: StoreApi<T>['destroy'];
   /** 初始化时调用 */
   onInit?(): void;
