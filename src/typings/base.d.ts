@@ -102,3 +102,7 @@ type Check_GetOptional = IsTypeEqual<
 type Optional<T> = T | undefined;
 
 export type PlainObject = Record<string | number | symbol, unknown>;
+
+
+export type PickRequired<T, K extends keyof T> = Required<Pick<T, K>> & Omit<T, K>;
+
