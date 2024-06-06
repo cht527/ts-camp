@@ -289,7 +289,7 @@ class SystemModel extends Model<
 
       return { instance, id };
     });
-    // 注册 axiosInstance response 拦截器（此处只注册 lite api，内部包含 okta 验证逻辑）
+    // 注册 axiosInstance response 拦截器（此处只注册 应用 api，内部包含鉴权验证逻辑）
     this.smsLiteAxiosInterceptor = HttpInstance.interceptors.response.use(
       this.handleAxiosResponseFulfilled,
       this.handleAxiosResponseRejected
