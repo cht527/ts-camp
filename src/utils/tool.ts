@@ -91,3 +91,10 @@ export const stringifyError = (
 export const notFalsy = <T>(value: T): value is Truthy<T> => !!value;
 export const conditional = <T>(exp: T): Optional<Truthy<T>> =>
   notFalsy(exp) ? exp : undefined;
+
+export const transStringToEnum = <Item>(
+  value: string,
+  enumObj: Record<string, Item>
+): Item | undefined => {
+  return Object.values(enumObj).find((v) => String(v) === value);
+};
