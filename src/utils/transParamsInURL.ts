@@ -21,7 +21,7 @@ const formUrl = `xxxxx/xxx.html?paramTK=${encodeURIComponent(
   ).toString("base64url")
 )}`;
 
-// 前端解析 URL中的
+// 前端解析 URL 中的 token
 export function parseTK(paramTK: string): Optional<ParamsTK> {
   return JSON.parse(
     // 开启防火墙对 Query 参数的检查时，由于使用 Base64 编码可能解码出错，因此改为 Base64URL 编码
