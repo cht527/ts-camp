@@ -10,6 +10,7 @@ function Dashboard() {
     return (
       <div>
         <h2>Dashboard</h2>
+        <iframe src="/iframeSync.html" frameBorder="0"></iframe>
       </div>
     );
   }
