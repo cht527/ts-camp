@@ -16,6 +16,11 @@ export const NAV_CONFIG: T.INavConfig[] = [
     title: "看板",
     slug: "dashboard",
   },
+  {
+    id: 13,
+    title: "iframe",
+    slug: "iframe",
+  },
 ];
 
 const MOCK_DATA: T.ITest = {
